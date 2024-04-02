@@ -51,11 +51,11 @@ with mp_pose.Pose(min_detection_confidence=0.5, min_tracking_confidence=0.5) as 
             right_wrist = [landmarks[mp_pose.PoseLandmark.RIGHT_WRIST.value].x,landmarks[mp_pose.PoseLandmark.RIGHT_WRIST.value].y]
             
             # calculate angle
-            left_elbow_angle = round(functions.calculate_angle(left_shoulder,left_elbow,left_wrist),2)
-            left_shoulder_angle = round(functions.calculate_angle(right_shoulder,left_shoulder,left_elbow),2)
+            left_elbow_angle = round(functions.calculate_angle(left_shoulder,left_elbow,left_wrist))
+            left_shoulder_angle = round(functions.calculate_angle(right_shoulder,left_shoulder,left_elbow))
 
-            right_elbow_angle = round(functions.calculate_angle(right_shoulder,right_elbow,right_wrist),2)
-            right_shoulder_angle = round(functions.calculate_angle(left_shoulder,right_shoulder,right_elbow),2)           
+            right_elbow_angle = round(functions.calculate_angle(right_shoulder,right_elbow,right_wrist))
+            right_shoulder_angle = round(functions.calculate_angle(left_shoulder,right_shoulder,right_elbow))           
             
             # visualize angle
             cv2.putText(image,str(left_elbow_angle),
