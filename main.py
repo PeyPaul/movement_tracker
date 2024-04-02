@@ -124,6 +124,9 @@ with mp_pose.Pose(min_detection_confidence=0.5, min_tracking_confidence=0.5) as 
 
 
 
+# On va créer une variable boléenne qui indique si on est dans la bonne position ou pas
+# On va créer une deuxième variable qui prend la valeur du temps (i.e. time.time()) au moment où la position est validée
+
 
 
 ##choses à faire pour le 22 Avril
