@@ -28,7 +28,7 @@ num_position = 0
 
 time_position_valid = 0
 position_valid = False
-
+texte = "position valid"
 
 ## Setup mediapipe instance
 with mp_pose.Pose(min_detection_confidence=0.5, min_tracking_confidence=0.5) as pose:
@@ -87,20 +87,22 @@ with mp_pose.Pose(min_detection_confidence=0.5, min_tracking_confidence=0.5) as 
 
             angles = (left_elbow_angle,left_shoulder_angle,right_elbow_angle,right_shoulder_angle)
             
+
             if functions.is_position_valid(angles,position[num_position],tolerance):
-                print("position valid")
-            else:
-                print("position not valid")
+                print(texte)
+            #else:
+            #    print("position not valid")
             
             if not functions.is_position_valid(angles,position[num_position],tolerance):
                 position_valid = False
                 time_position_valid = 0
             elif position_valid == True and time.time() > time_position_valid + idle_time:
                 print("enigme validée !")
+                texte = "enigme validée !"
             else:
                 position_valid = True
                 time_position_valid = time.time()
-                
+            print(time_position_valid)
              
             #print('time :',time.time())
 
