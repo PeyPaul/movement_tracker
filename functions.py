@@ -12,3 +12,11 @@ def calculate_angle(a,b,c):
         angle = 360 - angle
     
     return angle
+
+def position_valid(angles,position,tolerance):
+    difference = (0,0,0,0)
+    for i in range(4):
+        difference[i] = abs(angles[i] - position[i])
+    if max(difference) > tolerance:
+        return False 
+    return True

@@ -2,9 +2,7 @@
 
 number_of_position = 3
 
-position_1 =(90,90,90,90)
-position_2 =(90,0,0,90)
-position_3 =(90,90,90,90)
+position =((90,90,90,90),(90,0,0,90),(90,90,90,90))
 
 # text displayed
 
