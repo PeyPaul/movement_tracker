@@ -13,3 +13,4 @@ text = 'code correct'
 # other useful value
 
 idle_time = 5
+tolerance = 10
