@@ -85,21 +85,16 @@ with mp_pose.Pose(min_detection_confidence=0.5, min_tracking_confidence=0.5) as 
                          cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0,0,0), 2, cv2.LINE_AA
                          )
 
-            angles = (left_elbow_angle,left_shoulder_angle,right_elbow_angle,right_shoulder_angle)
-            
-
-            if functions.is_position_valid(angles,position[num_position],tolerance):
-                print(texte)
-            #else:
-            #    print("position not valid")
+            angles = (left_elbow_angle,left_shoulder_angle,right_shoulder_angle,right_elbow_angle)      
             
             if not functions.is_position_valid(angles,position[num_position],tolerance):
                 position_valid = False
                 time_position_valid = 0
             elif position_valid == True and time.time() > time_position_valid + idle_time:
-                print("enigme validée !")
+                print(num_position, "enigme validée !")
                 texte = "enigme validée !"
                 num_position += 1
+                print(num_position)
             elif functions.is_position_valid(angles,position[num_position],tolerance) and position_valid == False:
                 position_valid = True
                 time_position_valid = time.time()
