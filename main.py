@@ -99,6 +99,7 @@ with mp_pose.Pose(min_detection_confidence=0.5, min_tracking_confidence=0.5) as 
             elif position_valid == True and time.time() > time_position_valid + idle_time:
                 print("enigme validée !")
                 texte = "enigme validée !"
+                num_position += 1
             elif functions.is_position_valid(angles,position[num_position],tolerance) and position_valid == False:
                 position_valid = True
                 time_position_valid = time.time()
