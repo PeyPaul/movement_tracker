@@ -91,17 +91,11 @@ with mp_pose.Pose(min_detection_confidence=0.5, min_tracking_confidence=0.5) as 
                 position_valid = False
                 time_position_valid = 0
             elif position_valid == True and time.time() > time_position_valid + idle_time:
-                print(num_position, "enigme validée !")
                 texte = "enigme validée !"
                 num_position += 1
-                print(num_position)
             elif functions.is_position_valid(angles,position[num_position],tolerance) and position_valid == False:
                 position_valid = True
                 time_position_valid = time.time()
-            #print(time_position_valid)
-             
-            #print('time :',time.time())
-
             
             # Counter logic
             if left_elbow_angle > 160:
