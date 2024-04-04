@@ -14,9 +14,13 @@ def calculate_angle(a,b,c):
     return angle
 
 def position_valid(angles,position,tolerance):
-    difference = (0,0,0,0)
+    difference = [0,0,0,0]
     for i in range(4):
         difference[i] = abs(angles[i] - position[i])
     if max(difference) > tolerance:
         return False 
     return True
+
+
+position_valid((0,0,0,0),(0,0,0,0),15)
+print(position_valid((0,0,0,-14),(0,0,0,0),15))

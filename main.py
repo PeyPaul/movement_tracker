@@ -20,6 +20,11 @@ counter = 0
 stage = None
 
 
+position = settings.position
+tolerance = settings.tolerance
+
+num_position = 0
+
 
 ## Setup mediapipe instance
 with mp_pose.Pose(min_detection_confidence=0.5, min_tracking_confidence=0.5) as pose:
@@ -75,8 +80,17 @@ with mp_pose.Pose(min_detection_confidence=0.5, min_tracking_confidence=0.5) as 
                          tuple(np.multiply(right_shoulder, [640,480]).astype(int)), 
                          cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0,0,0), 2, cv2.LINE_AA
                          )
+            print("oui1")
 
-
+            angles = (left_elbow_angle,left_shoulder_angle,right_elbow_angle,right_shoulder_angle)
+             
+            print(functions.position_valid(angles,position[num_position],tolerance))
+            print("oui")
+            
+            if functions.position_valid(angles,position[num_position],tolerance):
+                print("position valid")
+            else:
+                print("position not valid")
          
             print('time :',time.time())
 
