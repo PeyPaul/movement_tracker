@@ -1,3 +1,0 @@
-We first need to install the dependencies
-Run the following bash command once you are in your python environnement :
-pip install mediapipe opencv-python
