@@ -28,7 +28,7 @@ num_position = 0
 
 time_position_valid = 0
 position_valid = False
-texte = "position valid"
+texte = "waiting for position"
 
 ## Setup mediapipe instance
 with mp_pose.Pose(min_detection_confidence=0.5, min_tracking_confidence=0.5) as pose:
@@ -91,7 +91,6 @@ with mp_pose.Pose(min_detection_confidence=0.5, min_tracking_confidence=0.5) as 
                 position_valid = False
                 time_position_valid = 0
             elif position_valid == True and time.time() > time_position_valid + idle_time:
-                texte = "enigme validée !"
                 num_position += 1
             elif functions.is_position_valid(angles,position[num_position],tolerance) and position_valid == False:
                 position_valid = True
@@ -109,20 +108,25 @@ with mp_pose.Pose(min_detection_confidence=0.5, min_tracking_confidence=0.5) as 
         
         # render counter
         # setup the box
-        cv2.rectangle(image, (0,0), (225,73), (245,117,16), -1)
+        cv2.rectangle(image, (0,0), (225,73), (0,0,255), -1)
         
         # data
-        cv2.putText(image, 'REPS', (15,12),
-                    cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0,0,0), 1, cv2.LINE_AA)
-        cv2.putText(image, str(counter), (10,60),
-                    cv2.FONT_HERSHEY_SIMPLEX, 2, (255,255,255), 2, cv2.LINE_AA)
+        #cv2.putText(image, 'REPS', (15,12),
+        #            cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0,0,0), 1, cv2.LINE_AA)
+        #cv2.putText(image, str(counter), (10,60),
+        #            cv2.FONT_HERSHEY_SIMPLEX, 2, (255,255,255), 2, cv2.LINE_AA)
         
         # stage
-        cv2.putText(image, 'STAGE', (65,12),
+        cv2.putText(image, texte, (12,22),
                     cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0,0,0), 1, cv2.LINE_AA)
-        cv2.putText(image, stage, (60,60),
+        cv2.putText(image, str(num_position + 1), (182,22),
+                    cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0,0,0), 1, cv2.LINE_AA)
+        cv2.putText(image, "code secret", (40,71),
                     cv2.FONT_HERSHEY_SIMPLEX, 2, (255,255,255), 2, cv2.LINE_AA)
         
+        # credits
+        cv2.putText(image, "made by Paul Peytevin", (440,470),
+                    cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255,255,255), 1, cv2.LINE_AA)
         
         # render detection
         mp_drawing.draw_landmarks(image, results.pose_landmarks, mp_pose.POSE_CONNECTIONS,
