@@ -6,7 +6,7 @@ position =((90,90,90,90),(90,180,180,90),(90,90,90,90))
 
 # text displayed
 
-text = 'code correct'
+text = '1234'
 
 # other useful values
 

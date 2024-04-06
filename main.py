@@ -15,14 +15,12 @@ mp_pose = mp.solutions.pose
 
 cap = cv2.VideoCapture(0) # if there are errors due to the video stream, modify this value
 
-# variable counter
-counter = 0
-stage = None
-
+# variables
 
 position = settings.position
 tolerance = settings.tolerance
 idle_time = settings.idle_time
+text = settings.text
 
 num_position = 0
 color_rectangle = (0,0,255)
@@ -30,7 +28,7 @@ color_code = (0,0,255)
 
 time_position_valid = 0
 position_valid = False
-texte = "waiting for position"
+state = "waiting for position"
 
 ## Setup mediapipe instance
 with mp_pose.Pose(min_detection_confidence=0.5, min_tracking_confidence=0.5) as pose:
@@ -101,7 +99,7 @@ with mp_pose.Pose(min_detection_confidence=0.5, min_tracking_confidence=0.5) as 
             if num_position == len(position):
                 color_rectangle = (0,255,0)
                 color_code = (255,255,255)
-                texte = "authentication completed"
+                state = "authentication completed"
             
             
             # Counter logic
@@ -119,11 +117,12 @@ with mp_pose.Pose(min_detection_confidence=0.5, min_tracking_confidence=0.5) as 
         cv2.rectangle(image, (0,0), (225,73), color_rectangle, -1)
         
         # stage
-        cv2.putText(image, texte, (12,22),
+        cv2.putText(image, state, (12,22),
                     cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0,0,0), 1, cv2.LINE_AA)
-        cv2.putText(image, str(num_position + 1), (182,22),
-                    cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0,0,0), 1, cv2.LINE_AA)
-        cv2.putText(image, "secret", (40,71),
+        if num_position != len(position):
+            cv2.putText(image, str(num_position + 1), (182,22),
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0,0,0), 1, cv2.LINE_AA)
+        cv2.putText(image, text, (40,71),
                     cv2.FONT_HERSHEY_SIMPLEX, 2, color_code, 2, cv2.LINE_AA)
         
         # credits
