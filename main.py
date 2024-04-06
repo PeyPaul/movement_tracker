@@ -25,6 +25,8 @@ tolerance = settings.tolerance
 idle_time = settings.idle_time
 
 num_position = 0
+color_rectangle = (0,0,255)
+color_code = (0,0,255)
 
 time_position_valid = 0
 position_valid = False
@@ -96,6 +98,11 @@ with mp_pose.Pose(min_detection_confidence=0.5, min_tracking_confidence=0.5) as 
                 position_valid = True
                 time_position_valid = time.time()
             
+            if num_position == len(position):
+                color_rectangle = (0,255,0)
+                color_code = (255,255,255)
+            
+            
             # Counter logic
             if left_elbow_angle > 160:
                 stage = "down"
@@ -108,21 +115,15 @@ with mp_pose.Pose(min_detection_confidence=0.5, min_tracking_confidence=0.5) as 
         
         # render counter
         # setup the box
-        cv2.rectangle(image, (0,0), (225,73), (0,0,255), -1)
-        
-        # data
-        #cv2.putText(image, 'REPS', (15,12),
-        #            cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0,0,0), 1, cv2.LINE_AA)
-        #cv2.putText(image, str(counter), (10,60),
-        #            cv2.FONT_HERSHEY_SIMPLEX, 2, (255,255,255), 2, cv2.LINE_AA)
+        cv2.rectangle(image, (0,0), (225,73), color_rectangle, -1)
         
         # stage
         cv2.putText(image, texte, (12,22),
                     cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0,0,0), 1, cv2.LINE_AA)
         cv2.putText(image, str(num_position + 1), (182,22),
                     cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0,0,0), 1, cv2.LINE_AA)
-        cv2.putText(image, "code secret", (40,71),
-                    cv2.FONT_HERSHEY_SIMPLEX, 2, (255,255,255), 2, cv2.LINE_AA)
+        cv2.putText(image, "secret", (40,71),
+                    cv2.FONT_HERSHEY_SIMPLEX, 2, color_code, 2, cv2.LINE_AA)
         
         # credits
         cv2.putText(image, "made by Paul Peytevin", (440,470),

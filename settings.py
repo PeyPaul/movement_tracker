@@ -8,7 +8,7 @@ position =((90,90,90,90),(90,180,180,90),(90,90,90,90))
 
 text = 'code correct'
 
-# other useful value
+# other useful values
 
 idle_time = 3
 tolerance = 30
