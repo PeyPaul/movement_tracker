@@ -101,6 +101,7 @@ with mp_pose.Pose(min_detection_confidence=0.5, min_tracking_confidence=0.5) as 
             if num_position == len(position):
                 color_rectangle = (0,255,0)
                 color_code = (255,255,255)
+                texte = "authentication completed"
             
             
             # Counter logic
