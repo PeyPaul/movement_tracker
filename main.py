@@ -100,14 +100,6 @@ with mp_pose.Pose(min_detection_confidence=0.5, min_tracking_confidence=0.5) as 
                 color_rectangle = (0,255,0)
                 color_code = (255,255,255)
                 state = "authentication completed"
-            
-            
-            # Counter logic
-            if left_elbow_angle > 160:
-                stage = "down"
-            if left_elbow_angle < 30 and stage == 'down':
-                stage = 'up'
-                counter +=1
 
         except :
             pass
@@ -116,13 +108,13 @@ with mp_pose.Pose(min_detection_confidence=0.5, min_tracking_confidence=0.5) as 
         # setup the box
         cv2.rectangle(image, (0,0), (225,73), color_rectangle, -1)
         
-        # stage
+        # writings in the box
         cv2.putText(image, state, (12,22),
                     cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0,0,0), 1, cv2.LINE_AA)
         if num_position != len(position):
             cv2.putText(image, str(num_position + 1), (182,22),
                         cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0,0,0), 1, cv2.LINE_AA)
-        cv2.putText(image, text, (40,71),
+        cv2.putText(image, text, (25,71),
                     cv2.FONT_HERSHEY_SIMPLEX, 2, color_code, 2, cv2.LINE_AA)
         
         # credits
