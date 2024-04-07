@@ -21,6 +21,7 @@ position = settings.position
 tolerance = settings.tolerance
 idle_time = settings.idle_time
 text = settings.text
+show_angles = settings.show_angles
 
 num_position = 0
 color_rectangle = (0,0,255)
@@ -67,20 +68,21 @@ with mp_pose.Pose(min_detection_confidence=0.5, min_tracking_confidence=0.5) as 
             right_shoulder_angle = round(functions.calculate_angle(left_shoulder,right_shoulder,right_elbow))           
             
             # visualize angle
-            cv2.putText(image,str(left_elbow_angle),
+            if show_angles :
+                cv2.putText(image,str(left_elbow_angle),
                          tuple(np.multiply(left_elbow, [640,480]).astype(int)), 
                          cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0,0,0), 2, cv2.LINE_AA
                          )
-            cv2.putText(image,str(left_shoulder_angle),
+                cv2.putText(image,str(left_shoulder_angle),
                          tuple(np.multiply(left_shoulder, [640,480]).astype(int)), 
                          cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0,0,0), 2, cv2.LINE_AA
                          )
             
-            cv2.putText(image,str(right_elbow_angle),
+                cv2.putText(image,str(right_elbow_angle),
                          tuple(np.multiply(right_elbow, [640,480]).astype(int)), 
                          cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0,0,0), 2, cv2.LINE_AA
                          )
-            cv2.putText(image,str(right_shoulder_angle),
+                cv2.putText(image,str(right_shoulder_angle),
                          tuple(np.multiply(right_shoulder, [640,480]).astype(int)), 
                          cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0,0,0), 2, cv2.LINE_AA
                          )
