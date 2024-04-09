@@ -7,6 +7,7 @@ Run the following bash command once you are in your python environnement :
 pip install mediapipe opencv-python
 - To change the code or the secret message, modify the corresponding values in the file settings.py
 - Other useful values can be modify in the file settings.py but for more important change, such as the color, you have to change the file main.py
+- To launch the project, run the file 'main.py'. To close the mediapipe feed press the 'q' key
 
 ## Credits
 This code was made by Paul Peytevin, an engineer student at CentraleSupelec (part of University Paris-Saclay)
